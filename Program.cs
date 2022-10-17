@@ -1,4 +1,6 @@
-﻿namespace Skarp_beskrivande_statistik
+﻿using Newtonsoft.Json;
+
+namespace Skarp_beskrivande_statistik
 {
     internal class Program
     {
