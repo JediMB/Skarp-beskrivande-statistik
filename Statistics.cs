@@ -25,6 +25,8 @@ namespace Statistics
         // public static Minimum(int[] source) : int                            TOVA
         public static int Minimum(int[] source)
         {
+            VerifySource(source);
+
             return source.Min();
         }
 
