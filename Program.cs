@@ -1,3 +1,4 @@
+﻿using Newtonsoft.Json;
 ﻿using static Statistics.Statistics;
 
 namespace Skarp_beskrivande_statistik
