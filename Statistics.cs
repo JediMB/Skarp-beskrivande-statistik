@@ -1,6 +1,4 @@
-﻿using Skarp_beskrivande_statistik;
-
-namespace Statistics
+﻿namespace Statistics
 {
     public static class Statistics
     {
@@ -24,6 +22,8 @@ namespace Statistics
         
         public static double Median(int[] source)                               // ERIK
         {
+            VerifySource(source);
+
             Array.Sort(source);
             int halfLength = source.Length / 2;
            
@@ -33,6 +33,7 @@ namespace Statistics
                 double middle2 = source[halfLength];
                 return (middle1 + middle2) / 2;
             }
+
             return source[halfLength];
         }
 
