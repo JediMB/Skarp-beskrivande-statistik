@@ -4,6 +4,7 @@ namespace Statistics
 {
     public static class Statistics
     {
+
         // public static DescriptiveStatistics(int[] source) : dynamic          
         // public static Maximum(int[] source) : int                            GUSTAV
         
@@ -21,9 +22,21 @@ namespace Statistics
             return sum / source.Length;
         }
         
-        // public static Median(int[] source) : double                          ERIK
-        // public static Minimum(int[] source) : int                            TOVA
-        public static int Minimum(int[] source)
+        public static double Median(int[] source)                               // ERIK
+        {
+            Array.Sort(source);
+            int halfLength = source.Length / 2;
+           
+            if (source.Length % 2 == 0)
+            {
+                double middle1 = source[halfLength - 1];
+                double middle2 = source[halfLength];
+                return (middle1 + middle2) / 2;
+            }
+            return source[halfLength];
+        }
+
+        public static int Minimum(int[] source)                                 // TOVA
         {
             VerifySource(source);
 
