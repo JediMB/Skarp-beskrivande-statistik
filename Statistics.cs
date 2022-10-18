@@ -4,8 +4,8 @@
     {
 
         // public static DescriptiveStatistics(int[] source) : dynamic          
-        // public static Maximum(int[] source) : int                            GUSTAV
-        
+        // public static Mode(int[] source) : int[]  
+
         public static double Mean(int[] source)                                 // MATTIAS
         {
             VerifySource(source);
@@ -18,8 +18,7 @@
             }
             
             return sum / source.Length;
-        }
-        
+        }       
         public static double Median(int[] source)                               // ERIK
         {
             VerifySource(source);
@@ -33,20 +32,13 @@
                 double middle2 = source[halfLength];
                 return (middle1 + middle2) / 2;
             }
-
             return source[halfLength];
         }
-
         public static int Minimum(int[] source)                                 // TOVA
         {
             VerifySource(source);
             return source.Min();
-        }
-
-        // public static Mode(int[] source) : int[]                             
-        // public static Range(int[] source) : int                              
-        // public static StandardDeviation(int[] source) : double
-
+        }                                  
         public static int Maximum(int[] source)                         //Gustav
         {
             int Maximum = source.Max();
@@ -57,7 +49,6 @@
             int range = source.Max() - source.Min();
             return range;
         }
-
         public static double StandardDeviation(int[] source)          //Gustav
         {
             double savg = 0;
@@ -67,7 +58,6 @@
             savg = Math.Sqrt(standardDevisum / count);
             return savg;
         }
-
         private static void VerifySource(int[] source)
         {
             if (source == null)
