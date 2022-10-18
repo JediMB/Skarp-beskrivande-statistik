@@ -21,13 +21,22 @@ namespace Statistics
             return new Dictionary<string, dynamic>()
             {
                 { "Maximum", Maximum(source) },
-                { "Mean", Mean(source) },
-                { "Median", Median(source) },
+                { "Mean", Mean(source).ToString("F1") },
+                { "Median", Median(source).ToString("F1") },
                 { "Minimum", Minimum(source) },
                 { "Mode", Mode(source) },
                 { "Range", Range(source) },
-                { "Standard Deviation", StandardDeviation(source) }
+                { "Standard Deviation", StandardDeviation(source).ToString("F1") }
             };
+
+            int[] modes = Mode(source);
+            descStat["Mode"] = modes[0];
+
+            if (modes.Length > 0)
+                for (int i = 1; i < modes.Length; i++)
+                    descStat["Mode"] += ", " + modes[i];
+
+            return descStat;
         }
 
         public static int Maximum(int[] source)                         //Gustav
