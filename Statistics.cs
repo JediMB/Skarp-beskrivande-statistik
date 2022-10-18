@@ -49,17 +49,20 @@
 
         public static int Maximum(int[] source)                         //Gustav
         {
+            VerifySource(source);
             int Maximum = source.Max();
             return Maximum;
         }
         public static int Range(int[] source)                           //Gustav
         {
+            VerifySource(source);
             int range = source.Max() - source.Min();
             return range;
         }
 
         public static double StandardDeviation(int[] source)          //Gustav
         {
+            VerifySource(source);
             double savg = 0;
             double count = source.Count();
             double standardDeviavrg = source.Average();
