@@ -6,16 +6,25 @@ namespace Statistics
     {
         public static dynamic DescriptiveStatistics(int[] source)               // MATTIAS
         {
-            return new Dictionary<string, dynamic>()
+            Dictionary<string, dynamic> descStat = new()
             {
                 { "Maximum", Maximum(source) },
-                { "Mean", Mean(source) },
-                { "Median", Median(source) },
+                { "Mean", Mean(source).ToString("F1") },
+                { "Median", Median(source).ToString("F1") },
                 { "Minimum", Minimum(source) },
-                //{ nameof(Mode), Mode(source) },
+                { "Mode", string.Empty },
                 { "Range", Range(source) },
-                { "Standard Deviation", StandardDeviation(source) }
+                { "Standard Deviation", StandardDeviation(source).ToString("F1") }
             };
+
+            int[] modes = Mode(source);
+            descStat["Mode"] = modes[0];
+
+            if (modes.Length > 0)
+                for (int i = 1; i < modes.Length; i++)
+                    descStat["Mode"] += ", " + modes[i];
+
+            return descStat;
         }
         
 
