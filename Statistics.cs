@@ -40,14 +40,34 @@
         public static int Minimum(int[] source)                                 // TOVA
         {
             VerifySource(source);
-
             return source.Min();
         }
 
         // public static Mode(int[] source) : int[]                             
         // public static Range(int[] source) : int                              
         // public static StandardDeviation(int[] source) : double
-         
+
+        public static int Maximum(int[] source)                         //Gustav
+        {
+            int Maximum = source.Max();
+            return Maximum;
+        }
+        public static int Range(int[] source)                           //Gustav
+        {
+            int range = source.Max() - source.Min();
+            return range;
+        }
+
+        public static double StandardDeviation(int[] source)          //Gustav
+        {
+            double savg = 0;
+            double count = source.Count();
+            double standardDeviavrg = source.Average();
+            double standardDevisum = source.Sum(i => (i - standardDeviavrg) * (i - standardDeviavrg));
+            savg = Math.Sqrt(standardDevisum / count);
+            return savg;
+        }
+
         private static void VerifySource(int[] source)
         {
             if (source == null)
@@ -55,6 +75,7 @@
 
             if (source.Length == 0)
                 throw new ArgumentException("Array is empty", nameof(source));
+
         }
     }
 }
