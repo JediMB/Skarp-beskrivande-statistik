@@ -8,6 +8,8 @@ namespace Skarp_beskrivande_statistik
         {
             int[] source = FileReader.Json();
 
+            Console.WriteLine("Descriptive statistics for data.json:");
+
             foreach (KeyValuePair<string, dynamic> value in DescriptiveStatistics(source))
             {
                 Console.Write($"\n{value.Key.ToString().PadRight(20)}: ");
@@ -33,6 +35,7 @@ namespace Skarp_beskrivande_statistik
                 Console.Write($"{value.Value}");
             }
 
+            Console.Write("\n\nPress any key to continue... ");
             Console.ReadKey();
         }
     }

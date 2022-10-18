@@ -21,12 +21,12 @@ namespace Statistics
             return new Dictionary<string, dynamic>()
             {
                 { "Maximum", Maximum(source) },
-                { "Mean", Mean(source).ToString("F1") },
-                { "Median", Median(source).ToString("F1") },
+                { "Mean", Mean(source) },
+                { "Median", Median(source) },
                 { "Minimum", Minimum(source) },
                 { "Mode", Mode(source) },
                 { "Range", Range(source) },
-                { "Standard Deviation", StandardDeviation(source).ToString("F1") }
+                { "Standard Deviation", StandardDeviation(source) }
             };
         }
 
