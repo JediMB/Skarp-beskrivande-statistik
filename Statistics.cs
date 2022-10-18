@@ -4,20 +4,47 @@ namespace Statistics
 {
     public static class Statistics
     {
+        private static void VerifySource(int[] source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            if (source.Length == 0)
+                throw new ArgumentException("Array is empty", nameof(source));
+
+        }
+
         public static dynamic DescriptiveStatistics(int[] source)               // MATTIAS
         {
+            VerifySource(source);
+
             return new Dictionary<string, dynamic>()
             {
                 { "Maximum", Maximum(source) },
-                { "Mean", Mean(source) },
-                { "Median", Median(source) },
+                { "Mean", Mean(source).ToString("F1") },
+                { "Median", Median(source).ToString("F1") },
                 { "Minimum", Minimum(source) },
-                //{ nameof(Mode), Mode(source) },
+                { "Mode", Mode(source) },
                 { "Range", Range(source) },
-                { "Standard Deviation", StandardDeviation(source) }
+                { "Standard Deviation", StandardDeviation(source).ToString("F1") }
             };
+
+            int[] modes = Mode(source);
+            descStat["Mode"] = modes[0];
+
+            if (modes.Length > 0)
+                for (int i = 1; i < modes.Length; i++)
+                    descStat["Mode"] += ", " + modes[i];
+
+            return descStat;
         }
-        
+
+        public static int Maximum(int[] source)                         //Gustav
+        {
+            VerifySource(source);
+            int Maximum = source.Max();
+            return Maximum;
+        }
 
         public static double Mean(int[] source)                                 // MATTIAS
         {
@@ -58,41 +85,6 @@ namespace Statistics
             return source.Min();
         }
 
-        // public static Mode(int[] source) : int[]
-
-        public static int Maximum(int[] source)                         //Gustav
-        {
-            VerifySource(source);
-            int Maximum = source.Max();
-            return Maximum;
-        }
-        public static int Range(int[] source)                           //Gustav
-        {
-            VerifySource(source);
-            int range = source.Max() - source.Min();
-            return range;
-        }
-
-        public static double StandardDeviation(int[] source)          //Gustav
-        {
-            VerifySource(source);
-            double savg = 0;
-            double count = source.Count();
-            double standardDeviavrg = source.Average();
-            double standardDevisum = source.Sum(i => (i - standardDeviavrg) * (i - standardDeviavrg));
-            savg = Math.Sqrt(standardDevisum / count);
-            return savg;
-        }
-
-        private static void VerifySource(int[] source)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-
-            if (source.Length == 0)
-                throw new ArgumentException("Array is empty", nameof(source));
-
-        }
         public static int[] Mode(int[] source)
         {
             VerifySource(source);
@@ -117,6 +109,24 @@ namespace Statistics
 
             return values.Keys.ToArray();
 
+        }
+
+        public static int Range(int[] source)                           //Gustav
+        {
+            VerifySource(source);
+            int range = source.Max() - source.Min();
+            return range;
+        }
+
+        public static double StandardDeviation(int[] source)          //Gustav
+        {
+            VerifySource(source);
+            double savg = 0;
+            double count = source.Count();
+            double standardDeviavrg = source.Average();
+            double standardDevisum = source.Sum(i => (i - standardDeviavrg) * (i - standardDeviavrg));
+            savg = Math.Sqrt(standardDevisum / count);
+            return savg;
         }
     }
 }
