@@ -3,21 +3,34 @@
     public static class Statistics
     {
 
-        // public static DescriptiveStatistics(int[] source) : dynamic          
-        // public static Maximum(int[] source) : int                            GUSTAV
+        public static dynamic DescriptiveStatistics(int[] source)               // MATTIAS
+        {
+            return new Dictionary<string, dynamic>()
+            {
+                { "Maximum", Maximum(source) },
+                { "Mean", Mean(source) },
+                { "Median", Median(source) },
+                { "Minimum", Minimum(source) },
+                //{ nameof(Mode), Mode(source) },
+                { "Range", Range(source) },
+                { "Standard Deviation", StandardDeviation(source) }
+            };
+        }
         
         public static double Mean(int[] source)                                 // MATTIAS
         {
             VerifySource(source);
 
-            double sum = 0;
+            //double sum = 0;
 
-            for (int i = 0; i < source.Length; i++)
-            {
-                sum += source[i];
-            }
+            //for (int i = 0; i < source.Length; i++)
+            //{
+            //    sum += source[i];
+            //}
             
-            return sum / source.Length;
+            //return sum / source.Length;
+
+            return source.Average();
         }
         
         public static double Median(int[] source)                               // ERIK
@@ -43,23 +56,24 @@
             return source.Min();
         }
 
-        // public static Mode(int[] source) : int[]                             
-        // public static Range(int[] source) : int                              
-        // public static StandardDeviation(int[] source) : double
+        // public static Mode(int[] source) : int[]
 
         public static int Maximum(int[] source)                         //Gustav
         {
+            VerifySource(source);
             int Maximum = source.Max();
             return Maximum;
         }
         public static int Range(int[] source)                           //Gustav
         {
+            VerifySource(source);
             int range = source.Max() - source.Min();
             return range;
         }
 
         public static double StandardDeviation(int[] source)          //Gustav
         {
+            VerifySource(source);
             double savg = 0;
             double count = source.Count();
             double standardDeviavrg = source.Average();

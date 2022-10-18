@@ -14,9 +14,8 @@ namespace Skarp_beskrivande_statistik
                 Console.Write(exempelArray[i] + " ");
             Console.WriteLine();
 
-            Console.WriteLine("Mean: " + Mean(exempelArray));
-            Console.WriteLine("Median: " + Median(exempelArray));
-            Console.WriteLine("Minimum: " + Minimum(exempelArray));
+            foreach (dynamic value in DescriptiveStatistics(exempelArray))
+                Console.WriteLine(value);
 
             Console.ReadKey();
         }
