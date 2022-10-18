@@ -1,8 +1,9 @@
-﻿namespace Statistics
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Statistics
 {
     public static class Statistics
     {
-
         public static dynamic DescriptiveStatistics(int[] source)               // MATTIAS
         {
             return new Dictionary<string, dynamic>()
@@ -17,6 +18,7 @@
             };
         }
         
+
         public static double Mean(int[] source)                                 // MATTIAS
         {
             VerifySource(source);
@@ -32,14 +34,14 @@
 
             return source.Average();
         }
-        
+
         public static double Median(int[] source)                               // ERIK
         {
             VerifySource(source);
 
             Array.Sort(source);
             int halfLength = source.Length / 2;
-           
+
             if (source.Length % 2 == 0)
             {
                 double middle1 = source[halfLength - 1];
@@ -89,6 +91,31 @@
 
             if (source.Length == 0)
                 throw new ArgumentException("Array is empty", nameof(source));
+
+        }
+        public static int[] Mode(int[] source)
+        {
+            VerifySource(source);
+
+            Dictionary<int, int> values = new();
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                if (values.ContainsKey(source[i]))
+                    values[source[i]]++;
+                else
+                    values.Add(source[i], 1);
+            }
+
+            int maxCount = values.Values.Max();
+
+            foreach (KeyValuePair<int, int> kvp in values)
+            {
+                if (kvp.Value != maxCount)
+                    values.Remove(kvp.Key);
+            }
+
+            return values.Keys.ToArray();
 
         }
     }
