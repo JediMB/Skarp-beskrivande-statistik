@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-﻿using static Statistics.Statistics;
+﻿﻿using static Statistics.Statistics;
 
 namespace Skarp_beskrivande_statistik
 { 
@@ -7,16 +6,32 @@ namespace Skarp_beskrivande_statistik
     {
         static void Main()
         {
-            // JSON
-
             int[] source = FileReader.Json();
 
-            for (int i = 0; i < source.Length; i++)
-                Console.Write(source[i] + " ");
-            Console.WriteLine();
+            foreach (KeyValuePair<string, dynamic> value in DescriptiveStatistics(source))
+            {
+                Console.Write($"\n{value.Key.ToString().PadRight(20)}: ");
 
-            foreach (dynamic value in DescriptiveStatistics(source))
-                Console.WriteLine(value);
+                if(value.Value is int[])
+                {
+                    int[] values = (int[])value.Value;
+                    Console.Write(values[0]);
+
+                    if (values.Length > 1)
+                        for (int i = 1; i < values.Length; i++)
+                            Console.Write(", " + values[i]);
+
+                    continue;
+                }
+
+                if (value.Value is double)
+                {
+                    Console.Write($"{value.Value:F1}");
+                    continue;
+                }
+
+                Console.Write($"{value.Value}");
+            }
 
             Console.ReadKey();
         }
