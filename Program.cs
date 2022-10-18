@@ -9,6 +9,9 @@ namespace Skarp_beskrivande_statistik
         {
             // JSON
 
+            int[] exempelArray = new int[] { 105, 10, 3, 42, 400, 10, 11, 3 };
+
+
             FileReader.Json();
         
             Console.WriteLine("Mean: "+Mean(FileReader.Json()));
@@ -29,6 +32,12 @@ namespace Skarp_beskrivande_statistik
             Console.WriteLine("Median: " + Median(exempelArray));
             Console.WriteLine("Minimum: " + Minimum(exempelArray));
            */
+
+            Console.Write("Mode: ");
+            foreach (int i in Mode(exempelArray))
+            {
+                Console.Write(i + " ");
+            }
 
             Console.ReadKey();
         }
