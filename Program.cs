@@ -8,7 +8,7 @@ namespace Skarp_beskrivande_statistik
         static void Main()
         {
             // JSON
-            int[] exempelArray = new int[] { 105, 3, 10, 42, 400, 10, 11 };
+            int[] exempelArray = new int[] { 105, 10, 3, 42, 400, 10, 11, 3 };
 
             for (int i = 0; i < exempelArray.Length; i++)
                 Console.Write(exempelArray[i] + " ");
@@ -17,6 +17,12 @@ namespace Skarp_beskrivande_statistik
             Console.WriteLine("Mean: " + Mean(exempelArray));
             Console.WriteLine("Median: " + Median(exempelArray));
             Console.WriteLine("Minimum: " + Minimum(exempelArray));
+
+            Console.Write("Mode: ");
+            foreach (int i in Mode(exempelArray))
+            {
+                Console.Write(i + " ");
+            }
 
             Console.ReadKey();
         }
