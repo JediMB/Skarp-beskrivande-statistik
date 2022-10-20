@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace Statistics
+namespace Beskrivande_Statistik
 {
     public static class Statistics
     {
@@ -10,7 +10,7 @@ namespace Statistics
                 throw new ArgumentNullException(nameof(source));
 
             if (source.Length == 0)
-                throw new ArgumentException("Array is empty", nameof(source));
+                throw new InvalidOperationException("Sequence contains no elements");
 
         }
 
@@ -20,10 +20,10 @@ namespace Statistics
 
             return new Dictionary<string, dynamic>()
             {
+                { "Minimum", Minimum(source) },
                 { "Maximum", Maximum(source) },
                 { "Mean", Mean(source) },
                 { "Median", Median(source) },
-                { "Minimum", Minimum(source) },
                 { "Mode", Mode(source) },
                 { "Range", Range(source) },
                 { "Standard Deviation", StandardDeviation(source) }
@@ -112,12 +112,12 @@ namespace Statistics
         public static double StandardDeviation(int[] source)          //Gustav
         {
             VerifySource(source);
-            double savg = 0;
-            double count = source.Count();
+            //double savg = 0;
+            //double count = source.Length;
             double standardDeviavrg = source.Average();
             double standardDevisum = source.Sum(i => (i - standardDeviavrg) * (i - standardDeviavrg));
-            savg = Math.Sqrt(standardDevisum / count);
-            return savg;
+            //savg = Math.Sqrt(standardDevisum / source.Length);
+            return Math.Sqrt(standardDevisum / source.Length);
         }
     }
 }
