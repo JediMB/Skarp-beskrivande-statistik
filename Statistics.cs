@@ -16,8 +16,6 @@ namespace Beskrivande_Statistik
 
         public static dynamic DescriptiveStatistics(int[] source)               // MATTIAS
         {
-            VerifySource(source);
-
             return new Dictionary<string, dynamic>()
             {
                 { "Minimum", Minimum(source) },

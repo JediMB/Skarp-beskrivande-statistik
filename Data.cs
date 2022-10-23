@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
 
 namespace Beskrivande_Statistik
 {
@@ -10,19 +11,30 @@ namespace Beskrivande_Statistik
 
         public static int[] JsonNumbers { get => numbers ??= JsonConvert.DeserializeObject<int[]>(File.ReadAllText(jsonFilename)) ?? Array.Empty<int>(); }
 
-
+        /// <summary>
+        /// Prints the the data from a statistics method that returns an integer value
+        /// </summary>
+        /// <param name="statisticsMethod">Statistics.Minimum, Statistics.Maximum, or Statistics.Range</param>
         public static void Print(Func<int[], int> statisticsMethod)
         {
-            Console.WriteLine($"\n\n{statisticsMethod.Method.Name,-20}: {statisticsMethod(Data.JsonNumbers)}\n");
+            Console.WriteLine($"\n\n{SpacedOutString(statisticsMethod.Method.Name),-20}: {statisticsMethod(Data.JsonNumbers)}\n");
         }
 
+        /// <summary>
+        /// Prints the data from a statistics method that returns a double value, with a maximum of one decimal
+        /// </summary>
+        /// <param name="statisticsMethod">Statistics.Mean, Statistics.Median, or Statistics.StandardDeviation</param>
         public static void Print(Func<int[], double> statisticsMethod)
         {
             double result = statisticsMethod(Data.JsonNumbers);
 
-            Console.WriteLine($"\n\n{statisticsMethod.Method.Name,-20}: {(Math.Abs(result % 1) <= Double.Epsilon ? result.ToString("F0") : result.ToString("F1"))}\n");
+            Console.WriteLine($"\n\n{SpacedOutString(statisticsMethod.Method.Name),-20}: {(Math.Abs(result % 1) <= Double.Epsilon ? result.ToString("F0") : result.ToString("F1"))}\n");
         }
 
+        /// <summary>
+        /// Prints the data from a statistics method that returns a reference type
+        /// </summary>
+        /// <param name="statisticsMethod">Statistics.DescriptiveStatistics or Statistics.Mode</param>
         public static void Print(Func<int[], dynamic> statisticsMethod)
         {
             dynamic result = statisticsMethod(Data.JsonNumbers);
@@ -57,7 +69,7 @@ namespace Beskrivande_Statistik
 
             if (result is int[] integers)
             {
-                Console.Write($"\n\n{statisticsMethod.Method.Name,-20} :");
+                Console.Write($"\n\n{statisticsMethod.Method.Name,-20} : ");
 
                 PrintArrayValues(integers);
 
@@ -66,6 +78,9 @@ namespace Beskrivande_Statistik
             }
         }
 
+        /// <summary>
+        /// Prints all the values in an integer array
+        /// </summary>
         private static void PrintArrayValues(int[] values)
         {
             Console.Write(values[0]);
@@ -73,6 +88,24 @@ namespace Beskrivande_Statistik
             if (values.Length > 1)
                 for (int i = 1; i < values.Length; i++)
                     Console.Write(", " + values[i]);
+        }
+
+        /// <summary>
+        /// Inserts a blankspace before any uppercase letters after index 0 and returns the new string
+        /// </summary>
+        private static string SpacedOutString(string text)
+        {
+            if (text.Length > 1)
+                for (int i = 1; i < text.Length; i++)
+                {
+                    if (Char.IsUpper(text[i]))
+                    {
+                        text = text[..i] + " " + text[i..];
+                        i++;
+                    }
+                }
+
+            return text;
         }
         
     }
