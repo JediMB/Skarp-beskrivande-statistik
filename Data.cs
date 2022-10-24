@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Text;
 using System.Xml.Linq;
 
 namespace Beskrivande_Statistik
@@ -30,6 +31,33 @@ namespace Beskrivande_Statistik
             double result = statisticsMethod(Data.JsonNumbers);
 
             Console.WriteLine($"\n\n{SpacedOutString(statisticsMethod.Method.Name),-20}: {(Math.Abs(result % 1) <= Double.Epsilon ? result.ToString("F0") : result.ToString("F1"))}\n");
+        }
+
+        /// <summary>
+        /// Prints the data from a statistics method that returns a reference type, using aggregation
+        /// </summary>
+        /// <param name="statisticsMethod">Statistics.DescriptiveStatistics or Statistics.Mode</param>
+        /// <param name="aggregate">Set this to true</param>
+        public static void Print(Func<int[], dynamic> statisticsMethod, bool aggregate)
+        {
+            dynamic result = statisticsMethod(Data.JsonNumbers);
+
+            if (result is Dictionary<string, dynamic> dic)
+            {
+                Console.WriteLine("\n\nDescriptive statistics for data.json:");
+
+                Console.WriteLine(dic.Aggregate(new StringBuilder(),
+                    (sb, kvp) => sb.AppendFormat($"\n{kvp.Key,-20}: " +
+                    $"{(kvp.Value is int[] array ? string.Join(", ", array.Select(x => x.ToString())) : (kvp.Value is double value ? (value % 1 <= Double.Epsilon ? value.ToString("F0") : value.ToString("F1")) : kvp.Value))}"),
+                    sb => sb.ToString()) + "\n");
+                return;
+            }
+
+            if (result is int[] ints)
+            {
+                Console.WriteLine($"\n\n{SpacedOutString(statisticsMethod.Method.Name),-20}: " + string.Join(", ", ints.Select(x => x.ToString())) + "\n");
+                return;
+            }
         }
 
         /// <summary>
@@ -70,7 +98,7 @@ namespace Beskrivande_Statistik
 
             if (result is int[] integers)
             {
-                Console.Write($"\n\n{statisticsMethod.Method.Name,-20} : ");
+                Console.Write($"\n\n{statisticsMethod.Method.Name,-20}: ");
 
                 PrintArrayValues(integers);
 

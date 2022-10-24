@@ -44,7 +44,8 @@
                         break;
 
                     case '5':
-                        Data.Print(Statistics.Mode);
+                        //Data.Print(Statistics.Mode);
+                        Data.Print(Statistics.Mode, true);
                         break;
 
                     case '6':
@@ -56,7 +57,8 @@
                         break;
 
                     case '8':
-                        Data.Print(Statistics.DescriptiveStatistics);
+                        //Data.Print(Statistics.DescriptiveStatistics);
+                        Data.Print(Statistics.DescriptiveStatistics, true);
                         break;
 
                     case '0':
