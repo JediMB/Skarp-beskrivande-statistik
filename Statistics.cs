@@ -29,7 +29,7 @@ namespace Beskrivande_Statistik
         }
 
         #region Statistical Methods
-        public static int Maximum(int[] source)                         //Gustav
+        public static int Maximum(int[] source)                                 // GUSTAV
         {
             VerifySource(source);
             int Maximum = source.Max();
@@ -101,14 +101,14 @@ namespace Beskrivande_Statistik
 
         }
 
-        public static int Range(int[] source)                           //Gustav
+        public static int Range(int[] source)                                   // GUSTAV
         {
             VerifySource(source);
             int range = source.Max() - source.Min();
             return range;
         }
 
-        public static double StandardDeviation(int[] source)          //Gustav
+        public static double StandardDeviation(int[] source)                    // GUSTAV
         {
             VerifySource(source);
             //double savg = 0;
