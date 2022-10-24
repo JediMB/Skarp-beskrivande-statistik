@@ -1,42 +1,76 @@
-﻿﻿using static Statistics.Statistics;
-
-namespace Skarp_beskrivande_statistik
+﻿namespace Beskrivande_Statistik
 { 
     internal class Program
     {
         static void Main()
         {
-            int[] source = FileReader.Json();
+            Console.Title = "Descriptive Statistics";
 
-            Console.WriteLine("Descriptive statistics for data.json:");
+            MainLoop();
 
-            foreach (KeyValuePair<string, dynamic> value in DescriptiveStatistics(source))
+            Console.Write("\n\nGood bye!");
+            Thread.Sleep(1000);
+        }
+
+        static void MainLoop()
+        {
+            while (true)
             {
-                Console.Write($"\n{value.Key.ToString().PadRight(20)}: ");
+                Console.Write("How do you want to math today?" +
+                "\n1. Minimum 2. Maximum" +
+                "\n3. Mean    4. Median" +
+                "\n5. Mode    6. Range" +
+                "\n7. Standard Deviation" +
+                "\n8. Hit me with everything!" +
+                "\n0. Just let me go..." +
+                "\n> ");
 
-                if(value.Value is int[])
+                switch (Console.ReadKey().KeyChar)
                 {
-                    int[] values = (int[])value.Value;
-                    Console.Write(values[0]);
+                    case '1':
+                        Data.Print(Statistics.Minimum);
+                        break;
 
-                    if (values.Length > 1)
-                        for (int i = 1; i < values.Length; i++)
-                            Console.Write(", " + values[i]);
+                    case '2':
+                        Data.Print(Statistics.Maximum);
+                        break;
 
-                    continue;
+                    case '3':
+                        Data.Print(Statistics.Mean);
+                        break;
+
+                    case '4':
+                        Data.Print(Statistics.Median);
+                        break;
+
+                    case '5':
+                        Data.Print(Statistics.Mode);
+                        break;
+
+                    case '6':
+                        Data.Print(Statistics.Range);
+                        break;
+
+                    case '7':
+                        Data.Print(Statistics.StandardDeviation);
+                        break;
+
+                    case '8':
+                        Data.Print(Statistics.DescriptiveStatistics);
+                        break;
+
+                    case '0':
+                        return;
+
+                    default:
+                        Console.Clear();
+                        continue;
                 }
 
-                if (value.Value is double)
-                {
-                    Console.Write($"{value.Value:F1}");
-                    continue;
-                }
-
-                Console.Write($"{value.Value}");
+                Console.Write("Press the space key to continue... ");
+                while(Console.ReadKey(true).KeyChar != ' ') { }
+                Console.Clear();
             }
-
-            Console.Write("\n\nPress any key to continue... ");
-            Console.ReadKey();
         }
     }
 }
