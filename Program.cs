@@ -35,8 +35,8 @@
 
             MainLoop();
 
-            Console.Write("\n\nPress any key to exit... ");
-            Console.ReadKey();
+            Console.Write("\n\nGood bye!");
+            Thread.Sleep(1000);
         }
 
         static void MainLoop()
@@ -94,8 +94,8 @@
                         continue;
                 }
 
-                Console.Write("Press any key to continue... ");
-                Console.ReadKey();
+                Console.Write("Press the space key to continue... ");
+                while(Console.ReadKey(true).KeyChar != ' ') { }
                 Console.Clear();
             }
         }

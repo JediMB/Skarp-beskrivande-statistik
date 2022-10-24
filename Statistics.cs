@@ -28,6 +28,7 @@ namespace Beskrivande_Statistik
             };
         }
 
+        #region Statistical Methods
         public static int Maximum(int[] source)                         //Gustav
         {
             VerifySource(source);
@@ -117,5 +118,6 @@ namespace Beskrivande_Statistik
             //savg = Math.Sqrt(standardDevisum / source.Length);
             return Math.Sqrt(standardDevisum / source.Length);
         }
+        #endregion
     }
 }

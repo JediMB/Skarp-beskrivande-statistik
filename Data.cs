@@ -11,6 +11,7 @@ namespace Beskrivande_Statistik
 
         public static int[] JsonNumbers { get => numbers ??= JsonConvert.DeserializeObject<int[]>(File.ReadAllText(jsonFilename)) ?? Array.Empty<int>(); }
 
+        #region Public Print Methods
         /// <summary>
         /// Prints the the data from a statistics method that returns an integer value
         /// </summary>
@@ -77,7 +78,9 @@ namespace Beskrivande_Statistik
                 return;
             }
         }
+        #endregion
 
+        #region Private Print Helper-Methods
         /// <summary>
         /// Prints all the values in an integer array
         /// </summary>
@@ -107,6 +110,6 @@ namespace Beskrivande_Statistik
 
             return text;
         }
-        
+        #endregion
     }
 }
