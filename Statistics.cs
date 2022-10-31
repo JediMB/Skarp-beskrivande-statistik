@@ -24,6 +24,7 @@ namespace Beskrivande_Statistik
                 { "Median", Median(source) },
                 { "Mode", Mode(source) },
                 { "Range", Range(source) },
+                { "Sum", Sum(source) },
                 { "Standard Deviation", StandardDeviation(source) }
             };
         }
@@ -31,9 +32,11 @@ namespace Beskrivande_Statistik
         #region Statistical Methods
         public static int Maximum(int[] source)                                 // GUSTAV
         {
-            VerifySource(source);
-            int Maximum = source.Max();
-            return Maximum;
+            return source.Max();
+        }
+        public static int Sum(int[] source)                                    // Gustav
+        {
+            return source.Sum();
         }
 
         public static double Mean(int[] source)                                 // MATTIAS
@@ -103,19 +106,16 @@ namespace Beskrivande_Statistik
 
         public static int Range(int[] source)                                   // GUSTAV
         {
-            VerifySource(source);
-            int range = source.Max() - source.Min();
-            return range;
+            
+            return source.Max() - source.Min();
         }
 
         public static double StandardDeviation(int[] source)                    // GUSTAV
         {
             VerifySource(source);
-            //double savg = 0;
-            //double count = source.Length;
+          
             double standardDeviavrg = source.Average();
             double standardDevisum = source.Sum(i => (i - standardDeviavrg) * (i - standardDeviavrg));
-            //savg = Math.Sqrt(standardDevisum / source.Length);
             return Math.Sqrt(standardDevisum / source.Length);
         }
         #endregion
