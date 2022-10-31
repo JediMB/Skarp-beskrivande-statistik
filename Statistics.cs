@@ -18,14 +18,14 @@ namespace Beskrivande_Statistik
         {
             return new Dictionary<string, dynamic>()
             {
-                { "Minimum", Minimum(source) },
-                { "Maximum", Maximum(source) },
-                { "Mean", Mean(source) },
-                { "Median", Median(source) },
-                { "Mode", Mode(source) },
-                { "Range", Range(source) },
-                { "Sum", Sum(source) },
-                { "Standard Deviation", StandardDeviation(source) }
+                { "Minimum",            Minimum(source) },
+                { "Maximum",            Maximum(source) },
+                { "Mean",               Mean(source) },
+                { "Median",             Median(source) },
+                { "Mode",               Mode(source) },
+                { "Range",              Range(source) },
+                { "Standard Deviation", StandardDeviation(source) },
+                { "Sum",                Sum(source) }
             };
         }
 

@@ -40,6 +40,12 @@ namespace Beskrivande_Statistik
         /// <param name="aggregate">Set this to true</param>
         public static void Print(Func<int[], dynamic> statisticsMethod, bool aggregate)
         {
+            if (!aggregate)
+            {
+                Print(statisticsMethod);
+                return;
+            }
+
             dynamic result = statisticsMethod(Data.JsonNumbers);
 
             if (result is Dictionary<string, dynamic> dic)

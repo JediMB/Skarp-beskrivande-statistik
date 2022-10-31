@@ -17,12 +17,12 @@
             while (true)
             {
                 Console.Write("How do you want to math today?" +
-                "\n1. Minimum 2. Maximum" +
-                "\n3. Mean    4. Median" +
-                "\n5. Mode    6. Range" +
-                "\n7. Standard Deviation" +
-                "\n8. Hit me with everything!" +
-                "\n0. Just let me go..." +
+                "\n1. Minimum             2. Maximum" +
+                "\n3. Mean                4. Median" +
+                "\n5. Mode                6. Range" +
+                "\n7. Standard Deviation  8. Sum" +
+                "\n9. Complete summary" +
+                "\n0. EXIT" +
                 "\n> ");
 
                 switch (Console.ReadKey().KeyChar)
@@ -44,7 +44,6 @@
                         break;
 
                     case '5':
-                        //Data.Print(Statistics.Mode);
                         Data.Print(Statistics.Mode, true);
                         break;
 
@@ -57,7 +56,10 @@
                         break;
 
                     case '8':
-                        //Data.Print(Statistics.DescriptiveStatistics);
+                        Data.Print(Statistics.Sum);
+                        break;
+
+                    case '9':
                         Data.Print(Statistics.DescriptiveStatistics, true);
                         break;
 
