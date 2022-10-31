@@ -32,10 +32,12 @@ namespace Beskrivande_Statistik
         #region Statistical Methods
         public static int Maximum(int[] source)                                 // GUSTAV
         {
+            VerifySource(source);
             return source.Max();
         }
         public static int Sum(int[] source)                                    // Gustav
         {
+            VerifySource(source);
             return source.Sum();
         }
 
@@ -106,14 +108,13 @@ namespace Beskrivande_Statistik
 
         public static int Range(int[] source)                                   // GUSTAV
         {
-            
+            VerifySource(source);
             return source.Max() - source.Min();
         }
 
         public static double StandardDeviation(int[] source)                    // GUSTAV
         {
             VerifySource(source);
-          
             double standardDeviavrg = source.Average();
             double standardDevisum = source.Sum(i => (i - standardDeviavrg) * (i - standardDeviavrg));
             return Math.Sqrt(standardDevisum / source.Length);
