@@ -35,7 +35,8 @@ namespace Beskrivande_Statistik
             VerifySource(source);
             return source.Max();
         }
-        public static int Sum(int[] source)                                    // Gustav
+
+        public static int Sum(int[] source)                                     // GUSTAV
         {
             VerifySource(source);
             return source.Sum();
@@ -80,7 +81,7 @@ namespace Beskrivande_Statistik
             return source.Min();
         }
 
-        public static int[] Mode(int[] source)
+        public static int[] Mode(int[] source)                                  // Henrik + Mattias
         {
             VerifySource(source);
 
